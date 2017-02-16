@@ -92,6 +92,7 @@ initDBConnection();
 
 app.get('/', routes.index);
 
+
 function createResponseData(id, name, value, attachments) {
 
     var responseData = {
@@ -100,8 +101,6 @@ function createResponseData(id, name, value, attachments) {
         value: sanitizeInput(value),
         attachements: []
     };
-
-
     attachments.forEach(function(item, index) {
         var attachmentData = {
             content_type: item.type,
@@ -429,6 +428,35 @@ app.get('/api/favorites', function(request, response) {
 
 });
 
+
+app.post('/api/sensors', function(request, response) {
+
+    console.log("Get method invoked.. ")
+
+    db = cloudant.use(dbCredentials.dbName);
+
+    // db.list(function(err, body) {
+    //
+    //   var responseData = createResponseData(
+    //       "TEST");
+    //
+    //   docList.push(responseData);
+    //   response.write(JSON.stringify(docList));
+    //   console.log(JSON.stringify(docList));
+    //   console.log('ending response...');
+    //   response.end();
+    //
+    // });
+
+    var jsonResponse = "Sensor data created";
+
+    // response.write(JSON.stringify("Sensor data created"));
+    // response.status(201);
+    // console.log('ending response...');
+    // response.end();
+
+    response.status(201).send(jsonResponse);
+});
 
 http.createServer(app).listen(app.get('port'), '0.0.0.0', function() {
     console.log('Express server listening on port ' + app.get('port'));
