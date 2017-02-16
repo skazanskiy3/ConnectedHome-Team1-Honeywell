@@ -7,10 +7,7 @@ var jsonResponse;
 var modalTSdata = {};
 var progressBarCounter = 0;
 var assetMap = {};
-//Load the screen with default view
-window.onload = function () {
-    httpGet("https://hpsreporting2.azurewebsites.net/AssetList/Getall");
-};
+
 
 function showHi(){
     var ctx = document.getElementById("myChart");
@@ -23,7 +20,7 @@ function showHi(){
 //Reload the screen
 function refreshScreen() {
     clearBox();
-    httpGet("http://connected-home.mybluemix.net/api/schedule");
+    httpGet("http://connected-home.mybluemix.net/api/schedule?id=1&day=MO");
     showChart();
 }
 
