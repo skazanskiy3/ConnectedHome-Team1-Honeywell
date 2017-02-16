@@ -94,7 +94,7 @@ function initDBConnection() {
 
 initDBConnection();
 
-app.get('/', routes.index);
+app.get('/', routes.zones);
 
 app.get('/sensors', routes.sensors);
 
