@@ -222,6 +222,13 @@ app.get('/api/shouldbeon/', function(request, response) {
     return;
 });
 
+app.get('/api/correctOneOff/', function(request, response) {
+    var sequence = request.query.seq;
+    response.write('Sequence: ' + correctSequence(sequence))
+    response.end();
+    return;
+});
+
 function shouldBeOn(hourArr){
     var onOrOff = false;
     var sum = 0;
@@ -242,8 +249,22 @@ function shouldBeOn(hourArr){
     return onOrOff;
 }
 
-function onOffBasedOnHourSequence(sequence){
+function correctSequence(seq){
 
+    for(i = 1; i < seq.length-1; i++){
+        var prev = seq[i-1];
+        var curr = seq[i];
+        var next = seq[i+1];
+
+        var setTo;
+        if(prev == next){
+            setTo = prev;
+        }else{
+            setTo = curr;
+        }
+        seq[i] = setTo;
+    }
+    return seq;
 }
 
 app.get('/api/favorites/attach', function(request, response) {
