@@ -96,6 +96,9 @@ initDBConnection();
 
 app.get('/', routes.index);
 
+app.get('/sensors', routes.sensors);
+
+app.get('/zones', routes.zones);
 
 function createResponseData(id, name, value, attachments) {
 
@@ -432,6 +435,11 @@ app.get('/api/favorites', function(request, response) {
 
 });
 
+////// VIEW
+
+
+
+////// API ////
 
 app.post('/api/sensors', function(request, response) {
 
@@ -439,28 +447,18 @@ app.post('/api/sensors', function(request, response) {
 
     db = cloudant.use(dbCredentials.dbName);
 
-    // db.list(function(err, body) {
-    //
-    //   var responseData = createResponseData(
-    //       "TEST");
-    //
-    //   docList.push(responseData);
-    //   response.write(JSON.stringify(docList));
-    //   console.log(JSON.stringify(docList));
-    //   console.log('ending response...');
-    //   response.end();
-    //
-    // });
+    //JSON: {"sensors":[{"id":1,"hour":"12","motion":true},{"id":2,"hour":"12","motion":false}]}
+
+    console.log("REQ "+request.body);
 
     var jsonResponse = "Sensor data created";
 
-    // response.write(JSON.stringify("Sensor data created"));
-    // response.status(201);
-    // console.log('ending response...');
-    // response.end();
+
 
     response.status(201).send(jsonResponse);
 });
+
+
 
 http.createServer(app).listen(app.get('port'), '0.0.0.0', function() {
     console.log('Express server listening on port ' + app.get('port'));
