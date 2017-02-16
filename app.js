@@ -267,7 +267,7 @@ app.post('/api/favorites/attach', multipartMiddleware, function(request, respons
     });
 
 });
-
+//some stuff
 app.post('/api/favorites', function(request, response) {
 
     console.log("Create Invoked..");
