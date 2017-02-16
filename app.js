@@ -145,6 +145,15 @@ var saveDocument = function(id, name, value, response) {
 
 }
 
+app.get('/api/schedule/', function(request, response) {
+    var zoneId = request.query.id;
+    var day = request.query.day;
+
+    response.write(zoneId + ":" + day);
+    response.end();
+    return;
+});
+
 app.get('/api/favorites/attach', function(request, response) {
     var doc = request.query.id;
     var key = request.query.key;
