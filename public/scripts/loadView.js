@@ -9,18 +9,18 @@ var progressBarCounter = 0;
 var assetMap = {};
 
 
-function showHi(){
+function generateGraphs(day){
     var ctx = document.getElementById("myChart");
     var ctx = document.getElementById("myChart").getContext("2d");
     var ctx = $("#myChart");
     var ctx = "myChart";
 
-    refreshScreen();
+    refreshScreen(day);
 }
 //Reload the screen
-function refreshScreen() {
+function refreshScreen(day) {
     clearBox();
-    httpGet("http://connected-home.mybluemix.net/api/schedule?id=1&day=MO");
+    httpGet("http://connected-home.mybluemix.net/api/schedule?id=1&day=" + day);
     showChart();
 }
 
