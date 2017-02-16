@@ -214,6 +214,59 @@ app.get('/api/schedule', function(request, response) {
     return;
 });
 
+
+app.get('/api/shouldbeon/', function(request, response) {
+    var hourArr = request.query.arr;
+    response.write('Should be on: ' + shouldBeOn(hourArr))
+    response.end();
+    return;
+});
+
+app.get('/api/correctOneOff/', function(request, response) {
+    var sequence = request.query.seq;
+    response.write('Sequence: ' + correctSequence(sequence))
+    response.end();
+    return;
+});
+
+function shouldBeOn(hourArr){
+    var onOrOff = false;
+    var sum = 0;
+
+    for(i = 0; i < hourArr.length; i++){
+        sum += parseInt(hourArr[i]);
+    }
+
+    var average = sum/hourArr.length
+
+    if (average >= 0.5){
+        onOrOff = true;
+    }
+
+    console.log('average: ' + average)
+    console.log('num entries: ' + hourArr.length)
+
+    return onOrOff;
+}
+
+function correctSequence(seq){
+
+    for(i = 1; i < seq.length-1; i++){
+        var prev = seq[i-1];
+        var curr = seq[i];
+        var next = seq[i+1];
+
+        var setTo;
+        if(prev == next){
+            setTo = prev;
+        }else{
+            setTo = curr;
+        }
+        seq[i] = setTo;
+    }
+    return seq;
+}
+
 app.get('/api/favorites/attach', function(request, response) {
     var doc = request.query.id;
     var key = request.query.key;
