@@ -9,12 +9,13 @@ var progressBarCounter = 0;
 var assetMap = {};
 
 
-function generateGraphs(day){
+function generateGraphs(){
     var ctx = document.getElementById("myChart");
     var ctx = document.getElementById("myChart").getContext("2d");
     var ctx = $("#myChart");
     var ctx = "myChart";
-
+    var str= document.getElementById('dayText').value
+    var day = str.substring(0, 2);
     refreshScreen(day);
 }
 //Reload the screen
