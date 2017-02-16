@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connected Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="stylesheet" href="/style/style.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="scripts/loadView.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery-3.1.1.slim.min.js"></script>
+    <script src='scripts/Chart.min.js'></script>
+
+</head>
+<body>
+<div class="container">
+    <div class="banner">
+        <h1>Zones</h1>
+    </div>
+    <div class="container">
+
+
+        <button class="addBtn button" onclick="showHi()"  title="View Living room">
+            <img class="img-size" src="images/room.jpg" alt="add">
+        </button>
+
+        <button class="addBtn button" onclick="addItem()" title="View Living room">
+            <img class="img-size" src="images/kitchen.jpg" alt="add">
+        </button>
+        <canvas id="myChart" width="200" height="200"></canvas>
+
+    </div>
+    <div class="container">
+
+    </div>
+
+    <section>
+
+    </section>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="/scripts/util.js"></script>
+    <!--<script type="text/javascript" src="/scripts/sensors.js"></script>-->
+    <div id="myImage">
+        <div id="innerImg"></div>
+    </div>
+    <br><br><br>
+</div>
+</body>
+</html>
