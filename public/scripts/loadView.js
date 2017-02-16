@@ -22,7 +22,7 @@ function generateGraphs(){
 function refreshScreen(day) {
     clearBox();
     httpGet("http://connected-home.mybluemix.net/api/schedule?id=1&day=" + day);
-    showChart();
+
 }
 
 //Http Get call method
@@ -43,6 +43,7 @@ function httpGet(URL) {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var response = JSON.parse(xhr.responseText);
             hardCodedResponse = response;
+            showChart();
 
         }
     }
