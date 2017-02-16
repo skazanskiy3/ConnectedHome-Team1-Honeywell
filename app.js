@@ -145,11 +145,71 @@ var saveDocument = function(id, name, value, response) {
 
 }
 
-app.get('/api/schedule/', function(request, response) {
+app.get('/api/schedule', function(request, response) {
     var zoneId = request.query.id;
     var day = request.query.day;
 
-    response.write(zoneId + ":" + day);
+    var zoneIds = ['1','2'];
+    var names = ['Kitchen', 'LivingRoom'];
+    var days=['MO','TU','WE','TH','FR','SA','SU'];
+
+    var zones = {};
+    zones['zones'] = [];
+
+    for (var i=0; i<zoneIds.length; i++) {
+        var newZone = {};
+        newZone['id'] = zoneIds[i];
+        newZone['name'] = names[i];
+
+        var newZoneSchedule = {};
+        for (var j=0; j<days.length; j++) {
+            newZoneSchedule[days[j]] = {};
+            for (var k=0; k<24; k++) {
+                newZoneSchedule[days[j]][k] = Math.round(Math.random());
+            }
+        }
+        newZone['schedule'] = newZoneSchedule;
+        zones['zones'][i] = newZone;
+    }
+
+    var zoneData = undefined;
+    if (zoneId != undefined) {
+        for (var i=0; i<zones['zones'].length; i++) {
+            if (zones['zones'][i]['id'] == zoneId) {
+                zoneData = zones['zones'][i];
+            }
+        }
+    } else {
+        response.write(JSON.stringify(zones));
+        response.end();
+        return;
+    }
+
+    if (zoneData == undefined) {
+        response.status(500);
+        response.write("No zone with id " + zoneId);
+        response.end();
+        return;
+    }
+
+    if (day != undefined) {
+        if (zoneData['schedule'][day] == undefined) {
+            response.status(500);
+            response.write("Data for zone " + zoneId + " does not contain day " + day);
+            response.end();
+            return;
+        } else {
+            response.write(JSON.stringify(zoneData['schedule'][day]));
+            response.end();
+            return;
+        }
+    } else {
+        response.write(JSON.stringify(zoneData['schedule']));
+        response.end();
+        return;
+    }
+
+    response.write("Missing Case");
     response.end();
     return;
 });
